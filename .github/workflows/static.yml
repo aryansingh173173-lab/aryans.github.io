@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryan Singh | Filmmaker & Screenwriter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --noir: #0a0a0a;
+            --smoke: #1a1a1a;
+            --ash: #2a2a2a;
+            --fog: #888888;
+            --cream: #e8e5df;
+            --gold: #d4af37;
+            --film-red: #8b0000;
+        }
+
+        body {
+            background: var(--noir);
+            color: var(--cream);
+            font-family: 'Crimson Pro', serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            z-index: 1000;
+            mix-blend-mode: overlay;
+        }
+
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 999;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--smoke) 0%, var(--noir) 50%, var(--film-red) 100%);
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 2rem;
+            border: 4px solid var(--gold);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+            animation: fadeIn 1.5s ease-out 0.3s both;
+        }
+        
+        .profile-info {
+            text-align: center;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--fog);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            animation: fadeIn 1.5s ease-out 0.6s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero .subtitle {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--fog);
+            animation: fadeIn 1.5s ease-out 0.9s both;
+        }
+
+        .contact-bar {
+            margin-top: 2rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeIn 1.5s ease-out 1.2s both;
+        }
+
+        .contact-bar a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .contact-bar a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .contact-bar a:hover::after {
+            width: 100%;
+        }
+
+        .contact-bar a:hover {
+            color: var(--cream);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .section-header {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        /* Film Grid */
+        .film-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .film-card {
+            background: var(--smoke);
+            border: 1px solid var(--ash);
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .film-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .film-card:hover::before {
+            left: 100%;
+        }
+
+        .film-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .film-year {
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .film-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+
+        .film-role {
+            color: var(--fog);
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .film-desc {
+            color: var(--fog);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .award-badge {
+            display: inline-block;
+            background: var(--film-red);
+            color: var(--cream);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            margin-top: 4rem;
+            border-left: 2px solid var(--ash);
+            padding-left: 3rem;
+            position: relative;
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: 2px solid var(--noir);
+        }
+
+        .timeline-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-org {
+            color: var(--gold);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .timeline-desc {
+            color: var(--fog);
+            line-height: 1.8;
+        }
+
+        .timeline-desc ul {
+            margin-top: 1rem;
+            list-style: none;
+        }
+
+        .timeline-desc li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-desc li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        /* Education */
+        .education-box {
+            background: var(--smoke);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .education-box h3 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.8rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-box .degree {
+            color: var(--fog);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-box .years {
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--smoke);
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--ash);
+        }
+
+        footer p {
+            color: var(--fog);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-header {
+                font-size: 2rem;
+            }
+
+            .film-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: -2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+    <div class="vignette"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="data:image/jpeg;base64,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" alt="Aryan Singh" class="profile-photo">
+            <div class="profile-info">
+                <h1>ARYAN SINGH</h1>
+                <p class="tagline">Filmmaker & Screenwriter</p>
+                <p class="subtitle">Third-Year Undergraduate | IIT Kharagpur</p>
+            </div>
+            <div class="contact-bar">
+                <a href="/cdn-cgi/l/email-protection#1574676c747b242226242226557e72657c747b3b7c7c617e72653b74763b7c7b"><span class="__cf_email__" data-cfemail="a1c0d3d8c0cf909692909692e1cac6d1c8c0cf8fc8c8d5cac6d18fc0c28fc8cf">[email&#160;protected]</span></a>
+                <a href="tel:7033338703">7033338703</a>
+                <a href="https://linkedin.com/in/aryan-singh" target="_blank">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Work -->
+    <section class="fade-in-section">
+        <h2 class="section-header">Featured Work</h2>
+        <div class="film-grid">
+            <div class="film-card">
+                <div class="film-year">2025</div>
+                <h3 class="film-title">Kites</h3>
+                <p class="film-role">Assistant Director</p>
+                <p class="film-desc">Inter-IIT Cultural Meet (CULT 8.0) film submission. Managed production budget exceeding ₹1 lakh, coordinated direction, production, and technical teams. Oversaw scheduling, execution, and on-set operations across all production phases.</p>
+                <span class="award-badge">🏆 Gold Medal - Highest Marks Among All IITs</span>
+            </div>
+
+            <div class="film-card">
+                <div class="film-year">2024</div>
+                <h3 class="film-title">PANDEMONIUM</h3>
+                <p class="film-role">Co-Writer</p>
+                <p class="film-desc">GC Short Film for RP Hall of Residence. Crafted a compelling narrative that explored complex themes with precision and creativity.</p>
+                <span class="award-badge">🏆 Gold Medal - Highest Marks in Scriptwriting</span>
+            </div>
+
+            <div class="film-card">
+                <div class="film-year">2024</div>
+                <h3 class="film-title">Moral Conundrum</h3>
+                <p class="film-role">Co-Writer, Cinematographer, Editor</p>
+                <p class="film-desc">A suspense thriller exploring themes of tension, mystery, and psychological depth. Contributed to multiple aspects of production including scriptwriting, cinematography, and post-production editing.</p>
+            </div>
+
+            <div class="film-card">
+                <div class="film-year">2023</div>
+                <h3 class="film-title">Comception</h3>
+                <p class="film-role">Writer & Lead Actor</p>
+                <p class="film-desc">Wrote the script and played the lead role in this comedy film, sharpening abilities to craft realistic and engaging dialogues while balancing performance with creative vision.</p>
+            </div>
+
+            <div class="film-card">
+                <div class="film-year">2025</div>
+                <h3 class="film-title">Raakh Ka Khet</h3>
+                <p class="film-role">Co-Writer & Production Designer</p>
+                <p class="film-desc">50-hour filmmaking challenge for IFP 2025. Co-wrote the script and assisted production team in designing sets to enhance the visual aesthetics of the film.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="fade-in-section">
+        <h2 class="section-header">Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3 class="timeline-title">Co-Founder & CFO</h3>
+                <p class="timeline-org">Black Leaf Media (BLM)</p>
+                <div class="timeline-desc">
+                    <p>Building a brand consulting and advertising agency focused on strategic marketing and creative campaigns.</p>
+                    <ul>
+                        <li>Oversee financial strategy, marketing campaigns, and client brand-building initiatives</li>
+                        <li>Created advertisement reels, quote posts, and ad designs for brand social media presence</li>
+                        <li>Researched iconic advertising strategies: Pepsi Challenge, Tinder's growth strategy, Coca-Cola vs. Pepsi rivalry, GTA VI branding, Martin Scorsese's Chanel ad, and Ryan Reynolds' viral campaigns</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h3 class="timeline-title">Script Mentor</h3>
+                <p class="timeline-org">IIT Kharagpur</p>
+                <div class="timeline-desc">
+                    <p>Co-mentored a small team of juniors to write and direct a comical movie. Played a crucial role in selecting frames and helping define the cinematographic theme.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h3 class="timeline-title">Associate Member</h3>
+                <p class="timeline-org">SpringFest '24 | Sep 2023 – Feb 2024</p>
+                <div class="timeline-desc">
+                    <ul>
+                        <li>Co-led a 12-member Campus Ambassador team with outreach in Patna, Chandigarh prelims, and eliminations</li>
+                        <li>Executed printed media campaigns in 18 unique papers including Dainik Jagran and Prabhat Khabar</li>
+                        <li>Managed accommodation logistics for 3,000+ participants as part of a 7-member core team across 25 halls</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h3 class="timeline-title">Sketch Writer & Performer</h3>
+                <p class="timeline-org">IIT Kharagpur</p>
+                <div class="timeline-desc">
+                    <p>Co-authored three sketches tackling gender discrimination and morality themes in a comedic, clean tone. Performed in sketches and co-mentored fresher productions.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h3 class="timeline-title">Stand-Up Comedian</h3>
+                <p class="timeline-org">Various Venues</p>
+                <div class="timeline-desc">
+                    <p>Written and performed multiple stand-up sets at open mics. Opened for Asia's biggest fest SpringFest theme reveal 2025 in front of an audience of 800 people.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="fade-in-section">
+        <h2 class="section-header">Education</h2>
+        <div class="education-box">
+            <h3>Indian Institute of Technology, Kharagpur</h3>
+            <p class="degree">B.Arch, Department of Architecture & Regional Planning</p>
+            <p class="years">2023 – Present | Student ID: 23AR10008</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Aryan Singh. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Crafted with passion for cinema and storytelling.</p>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Fade in sections on scroll
+        const faders = document.querySelectorAll('.fade-in-section');
+        
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -100px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.cl
